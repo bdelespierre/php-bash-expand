@@ -1,5 +1,11 @@
 # php-bash-expand
 
+[Bash expansions](http://wiki.bash-hackers.org/syntax/expansion/brace)
+
+You need the [array_cartesian_product](https://github.com/bdelespierre/php-array-cartesian-product) function.
+
+## Function
+
 ```PHP
 /**
  * Bash like argument expansion (e.g. 'a{b,c}' result in ['ab', 'ac'])
@@ -23,4 +29,21 @@ function bash_expand(string $arg): array
 
     return array_map('implode', array_cartesian_product(...$parts));
 }
+```
+
+## Example
+
+```
+>>> bash_expand('a{b,c,d}e{1..3}')
+=> [
+     "abe1",
+     "abe2",
+     "abe3",
+     "ace1",
+     "ace2",
+     "ace3",
+     "ade1",
+     "ade2",
+     "ade3",
+   ]
 ```
